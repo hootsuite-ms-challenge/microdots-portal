@@ -2,7 +2,7 @@
 var nodes = new vis.DataSet([
     {id: 1, label: 'Node 1'},
     {id: 2, label: 'Node 2'},
-    {id: 3, label: 'Node 3', color: {background: 'blue'}},
+    {id: 3, label: 'Node 3', color: {background: 'blue', highlight: 'yellow'}},
     {id: 4, label: 'Node 4'},
     {id: 5, label: 'Node 5'}
 ]);
@@ -38,3 +38,8 @@ var options = {
 
 // initialize your network!
 var network = new vis.Network(container, data, options);
+
+var addNode = function() {
+    nodes.add({label: 'Teste'});
+    edges.add({from: 1, to: nodes.getIds().pop()});
+};
