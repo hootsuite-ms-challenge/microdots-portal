@@ -73,7 +73,10 @@ var app = {
             edges: {
                 color: '#768BFF',
                 width: 3,
-                smooth: false,
+                smooth: {
+                    "type": "continuous",
+                    "forceDirection": "none"
+                },
                 arrows: {to: true},
             },
             interaction: {
