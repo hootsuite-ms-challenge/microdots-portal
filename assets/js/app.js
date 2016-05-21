@@ -19,7 +19,7 @@ var app = {
             self.nodesList = data.nodes;
             self.edgesList = data.edges;
 
-            self.updateNetwork();
+            self.update();
         });
     },
 
@@ -47,9 +47,7 @@ var app = {
     },
 
     update: function() {
-        this.nodes = new vis.DataSet(this.nodesList);
-        this.edges = new vis.DataSet(this.edgesList);
-        this.network.setData({nodes: this.nodes, edges: this.edges});
+        this.network.setData({nodes: this.nodesList, edges: this.edgesList});
     },
 
     config: function() {
@@ -62,10 +60,19 @@ var app = {
             edges: {
                 color: '#768BFF',
                 width: 3,
-                //smooth: false,
+                smooth: false,
+                arrows: {to: true},
             },
-            interaction: {hover: true},
-            physics: { stabilization: true },
+            interaction: {
+                hover: true
+            },
+            physics: {
+                maxVelocity: 1,
+                enabled: true,
+                stabilization: false,
+            },
+            layout: {
+            },
         };
     },
 
