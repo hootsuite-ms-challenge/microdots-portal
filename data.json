@@ -1,0 +1,33 @@
+{
+	"nodes": [{
+		"id": "ac152dd",
+		"endpoints": null,
+		"label": "pagamento"
+	}, {
+		"id": "ab2247d",
+		"endpoints": null,
+		"label": "portal"
+	}, {
+		"id": "fb4d59b",
+		"endpoints": null,
+		"label": "autenticacao"
+	}],
+
+	"edges": [{
+		"from": "ab2247d",
+		"to": "ac152dd",
+        "arrows": "to"
+	}, {
+		"from": "ac152dd",
+		"to": "fb4d59b",
+        "arrows": "to"
+	}, {
+		"to": "ac152dd",
+		"from": "fb4d59b",
+        "arrows": "to"
+	}, {
+		"from": "ab2247d",
+		"to": "fb4d59b",
+        "arrows": "to"
+	}]
+}

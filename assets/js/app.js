@@ -3,13 +3,24 @@ var app = {
     nodesList: [],
     edgesList: [],
 
+    nodes: new vis.DataSet(this.nodesList),
+    edges: new vis.DataSet(this.edgesList),
+
     init: function() {
         this.config();
-        this.prepareData();
+        this.ploter();
         this.updateNetwork();
+        this.loadJson();
     },
 
     loadJson: function() {
+        var self = this;
+        $.getJSON( "data.json", function( data ) {
+            self.nodesList = data.nodes;
+            self.edgesList = data.edges;
+
+            self.updateNetwork();
+        });
     },
 
     prepareData: function() {
@@ -29,9 +40,16 @@ var app = {
     },
 
     updateNetwork: function() {
+        this.nodes.clear();
+        this.edges.clear();
+        this.nodes.add(this.nodesList);
+        this.edges.add(this.edgesList);
+    },
+
+    update: function() {
         this.nodes = new vis.DataSet(this.nodesList);
         this.edges = new vis.DataSet(this.edgesList);
-        this.ploter();
+        this.network.setData({nodes: this.nodes, edges: this.edges});
     },
 
     config: function() {
@@ -44,8 +62,10 @@ var app = {
             edges: {
                 color: '#768BFF',
                 width: 3,
+                //smooth: false,
             },
-            interaction: {hover: true}
+            interaction: {hover: true},
+            physics: { stabilization: true },
         };
     },
 
