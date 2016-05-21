@@ -2,6 +2,7 @@ var app = {
     options: {},
     nodesList: [],
     edgesList: [],
+    interval: 2000, // in milliseconds
 
     nodes: new vis.DataSet(this.nodesList),
     edges: new vis.DataSet(this.edgesList),
@@ -10,7 +11,15 @@ var app = {
         this.config();
         this.ploter();
         this.updateNetwork();
-        this.loadJson();
+        this.synchronizer();
+    },
+
+    synchronizer: function() {
+        var self = this;
+        console.log('sincroniza');
+        self.loadJson();
+
+        setTimeout(function() {self.synchronizer()}, self.interval);
     },
 
     loadJson: function() {
@@ -19,24 +28,28 @@ var app = {
             self.nodesList = data.nodes;
             self.edgesList = data.edges;
 
-            self.update();
+            self.updateData();
         });
     },
 
-    prepareData: function() {
-        this.nodesList = [
-            {id: 1, label: 'Node 1'},
-            {id: 2, label: 'Node 2'},
-            {id: 3, label: 'Node 3', color: {background: '', highlight: ''}},
-            {id: 4, label: 'Node 4'},
-            {id: 5, label: 'Node 5'}
-        ];
-        this.edgesList = [
-            {from: 1, to: 3, color: {color: ''}},
-            {from: 1, to: 2},
-            {from: 2, to: 4},
-            {from: 2, to: 5}
-        ];
+    updateData: function() {
+        var self = this;
+
+        var itens = this.nodes.update(this.nodesList);
+        var ids = app.nodes.getIds();
+        ids.forEach(function(id) {
+            if (itens.indexOf(id) < 0) {
+                self.nodes.remove(id);
+            }
+        });
+
+        itens = this.edges.update(this.edgesList);
+        ids = app.edges.getIds();
+        ids.forEach(function(id) {
+            if (itens.indexOf(id) < 0) {
+                self.edges.remove(id);
+            }
+        });
     },
 
     updateNetwork: function() {
@@ -46,7 +59,7 @@ var app = {
         this.edges.add(this.edgesList);
     },
 
-    update: function() {
+    refresh: function() {
         this.network.setData({nodes: this.nodesList, edges: this.edgesList});
     },
 
@@ -72,6 +85,7 @@ var app = {
                 stabilization: false,
             },
             layout: {
+                randomSeed: 2,
             },
         };
     },
