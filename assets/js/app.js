@@ -94,7 +94,7 @@ var app = {
     },
 
     ploter: function() {
-        this.container = $('#mynetwork')[0];
+        this.container = $('#network')[0];
 
         this.data = {
             nodes: this.nodes,
