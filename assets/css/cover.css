@@ -152,12 +152,19 @@ body {
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+  .cover-container {
+    height: calc(100% - 200px);
+    display: block;
+  }
+  .cover {
+    height: 100%;
+  }
 }
 
 @media (min-width: 992px) {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+    /*width: 700px;*/
   }
 }
