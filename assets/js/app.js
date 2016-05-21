@@ -85,7 +85,7 @@ var app = {
                 stabilization: false,
             },
             layout: {
-                randomSeed: 2,
+                //randomSeed: 2,
             },
         };
     },
