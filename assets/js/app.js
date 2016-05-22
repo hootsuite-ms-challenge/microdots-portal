@@ -1,5 +1,5 @@
 var app = {
-    dataUrl: 'data.json',
+    dataUrl: '',
     options: {},
     nodesList: [],
     edgesList: [],
