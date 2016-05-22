@@ -1,8 +1,10 @@
 var app = {
+    dataUrl: 'http://192.168.0.10:8000/graph/',
     options: {},
     nodesList: [],
     edgesList: [],
-    interval: 2000, // in milliseconds
+    interval: 2, // in seconds
+    repeater: null,
 
     nodes: new vis.DataSet(this.nodesList),
     edges: new vis.DataSet(this.edgesList),
@@ -19,12 +21,12 @@ var app = {
         console.log('sincroniza');
         self.loadJson();
 
-        setTimeout(function() {self.synchronizer()}, self.interval);
+        setTimeout(function() {self.synchronizer()}, self.interval * 1000);
     },
 
     loadJson: function() {
         var self = this;
-        $.getJSON( "data.json", function( data ) {
+        $.getJSON(self.dataUrl, function(data) {
             self.nodesList = data.nodes;
             self.edgesList = data.edges;
 
