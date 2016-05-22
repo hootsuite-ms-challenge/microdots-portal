@@ -1,37 +1,154 @@
 {
 	"nodes": [{
-		"id": "ac152dd",
-		"endpoints": null,
-		"label": "pagamento",
-        "title": "titulo do nó",
-        "extra": "conteúdo extra do nó"
+		"id": "jelus",
+		"endpoints": [],
+		"value": 5.0,
+		"label": "jelus"
 	}, {
-		"id": "ab2247d",
-		"endpoints": null,
-		"label": "portal"
+		"id": "ehdeusme",
+		"endpoints": ["GET /foo/"],
+		"value": 14.0,
+		"label": "ehdeusme"
 	}, {
-		"id": "fb4d59b",
-		"endpoints": null,
-		"label": "autenticacao"
+		"id": "jesus",
+		"endpoints": [],
+		"value": 5.0,
+		"label": "jesus"
+	}, {
+		"id": "ehdeusmam",
+		"endpoints": ["GET /foo/"],
+		"value": 14.0,
+		"label": "ehdeusmam"
+	}, {
+		"id": "jejus",
+		"endpoints": [],
+		"value": 5.0,
+		"label": "jejus"
+	}, {
+		"id": "ehdeusmame",
+		"endpoints": ["GET /foo/coisa", "GET /foo/vaca", "GET /foo/"],
+		"value": 50.0,
+		"label": "ehdeusmame"
+	}, {
+		"id": "ehdeusmme",
+		"endpoints": ["GET /foo/"],
+		"value": 14.0,
+		"label": "ehdeusmme"
+	}, {
+		"id": "jetus",
+		"endpoints": [],
+		"value": 5.0,
+		"label": "jetus"
+	}, {
+		"id": "ehusmame",
+		"endpoints": ["GET /foo/"],
+		"value": 14.0,
+		"label": "ehusmame"
+	}, {
+		"id": "jekus",
+		"endpoints": [],
+		"value": 5.0,
+		"label": "jekus"
+	}, {
+		"id": "eheusmame",
+		"endpoints": ["GET /foo/bar", "GET /foo/"],
+		"value": 23.0,
+		"label": "eheusmame"
+	}, {
+		"id": "jegus",
+		"endpoints": [],
+		"value": 5.0,
+		"label": "jegus"
+	}, {
+		"id": "ehdeumame",
+		"endpoints": ["GET /foo/"],
+		"value": 14.0,
+		"label": "ehdeumame"
+	}, {
+		"id": "ehdesmame",
+		"endpoints": ["GET /foo/"],
+		"value": 14.0,
+		"label": "ehdesmame"
+	}, {
+		"id": "ehsmme",
+		"endpoints": ["GET /foo/"],
+		"value": 14.0,
+		"label": "ehsmme"
+	}, {
+		"id": "jehus",
+		"endpoints": [],
+		"value": 5.0,
+		"label": "jehus"
 	}],
-
 	"edges": [{
-		"id": "1",
-		"from": "ab2247d",
-		"to": "ac152dd",
-        "label": "50%",
-        "title": "title do edges"
+		"to": "ehdeusme",
+		"id": "jelus_ehdeusme",
+		"from": "jelus",
+		"label": "100.0%"
 	}, {
-		"id": "2",
-		"from": "ac152dd",
-		"to": "fb4d59b"
+		"to": "ehdeusmam",
+		"id": "jesus_ehdeusmam",
+		"from": "jesus",
+		"label": "100.0%"
 	}, {
-		"id": "3",
-		"to": "ac152dd",
-		"from": "fb4d59b"
+		"to": "ehdeusmame",
+		"id": "jehus_ehdeusmame",
+		"from": "jehus",
+		"label": "33.3%"
 	}, {
-		"id": "4",
-		"from": "ab2247d",
-		"to": "fb4d59b"
+		"to": "ehdeusmame",
+		"id": "jegus_ehdeusmame",
+		"from": "jegus",
+		"label": "33.3%"
+	}, {
+		"to": "ehdeusmame",
+		"id": "jekus_ehdeusmame",
+		"from": "jekus",
+		"label": "33.3%"
+	}, {
+		"to": "ehdeusmame",
+		"id": "jetus_ehdeusmame",
+		"from": "jetus",
+		"label": "33.3%"
+	}, {
+		"to": "ehdeusmame",
+		"id": "jejus_ehdeusmame",
+		"from": "jejus",
+		"label": "33.3%"
+	}, {
+		"to": "ehdeusmme",
+		"id": "jesus_ehdeusmme",
+		"from": "jesus",
+		"label": "100.0%"
+	}, {
+		"to": "ehusmame",
+		"id": "jejus_ehusmame",
+		"from": "jejus",
+		"label": "100.0%"
+	}, {
+		"to": "eheusmame",
+		"id": "jelus_eheusmame",
+		"from": "jelus",
+		"label": "50.0%"
+	}, {
+		"to": "eheusmame",
+		"id": "jesus_eheusmame",
+		"from": "jesus",
+		"label": "50.0%"
+	}, {
+		"to": "ehdeumame",
+		"id": "jelus_ehdeumame",
+		"from": "jelus",
+		"label": "100.0%"
+	}, {
+		"to": "ehdesmame",
+		"id": "jesus_ehdesmame",
+		"from": "jesus",
+		"label": "100.0%"
+	}, {
+		"to": "ehsmme",
+		"id": "jelus_ehsmme",
+		"from": "jelus",
+		"label": "100.0%"
 	}]
 }
