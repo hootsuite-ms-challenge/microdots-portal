@@ -32,7 +32,9 @@ var app = {
     changeURL: function() {
         var $input = $('#url-config').find('input');
         var url = $input.val();
-        app.dataUrl = url;
+        if (url != '') {
+            app.dataUrl = url;
+        }
     },
 
     synchronizer: function() {
