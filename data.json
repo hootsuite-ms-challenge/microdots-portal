@@ -3,7 +3,8 @@
 		"id": "ac152dd",
 		"endpoints": null,
 		"label": "pagamento",
-        "title": "titulo do nó"
+        "title": "titulo do nó",
+        "extra": "conteúdo extra do nó"
 	}, {
 		"id": "ab2247d",
 		"endpoints": null,

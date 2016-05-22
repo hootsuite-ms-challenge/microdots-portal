@@ -1,9 +1,10 @@
 var app = {
     dataUrl: 'http://192.168.0.10:8001/graph/',
+    dataUrl: 'data.json',
     options: {},
     nodesList: [],
     edgesList: [],
-    interval: 4, // in seconds
+    interval: 2, // in seconds
     repeater: null,
 
     nodes: new vis.DataSet(this.nodesList),
@@ -26,7 +27,6 @@ var app = {
 
     loadJson: function() {
         var self = this;
-        //self.dataUrl = 'data.json';
         $.getJSON(self.dataUrl, function(data) {
             self.nodesList = data.nodes;
             self.edgesList = data.edges;
@@ -123,6 +123,18 @@ var app = {
 
         // initialize your network!
         this.network = new vis.Network(this.container, this.data, this.options);
+
+        this.network.on("hoverNode", function (params) {
+            console.log(params);
+            var ul = $('<div>');
+            ul.append($('<p>').html('Microservice: ' + params.node));
+            ul.append($('<p>').html('Endpoints: <br /> aaa<br />bbb'));
+
+            $('#info-content').html(ul);
+        });
+        this.network.on("blurNode", function (params) {
+            $('#info-content').html('');
+        });
     },
 
     addNode: function() {
