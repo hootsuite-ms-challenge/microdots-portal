@@ -1,6 +1,6 @@
 var app = {
     dataUrl: 'http://192.168.0.10:8001/graph/',
-    //dataUrl: 'data.json',
+    dataUrl: 'data.json',
     options: {},
     nodesList: [],
     edgesList: [],
@@ -11,17 +11,32 @@ var app = {
     edges: new vis.DataSet(this.edgesList),
 
     init: function() {
+        this.configURL();
         this.config();
         this.ploter();
         this.updateNetwork();
         this.synchronizer();
     },
 
+    configURL: function() {
+        var url = '';
+        url += window.location.protocol + '//';
+        url += window.location.hostname;
+        url += ':8001/graph/';
+
+        this.dataUrl = url;
+        $('#url-config').find('input').attr('placeholder', url);
+    },
+
+    changeURL: function() {
+        var $input = $('#url-config').find('input');
+        var url = $input.val();
+        app.dataUrl = url;
+    },
+
     synchronizer: function() {
         var self = this;
-        console.log('sincroniza');
         self.loadJson();
-
         setTimeout(function() {self.synchronizer()}, self.interval * 1000);
     },
 
@@ -128,6 +143,11 @@ var app = {
 
     bindEvents: function() {
         var self = this;
+
+        $(document).on('click', '.btn-save-url', function(e) {
+            self.changeURL();
+        });
+
         this.network.on("hoverNode", function (params) {
             var nodeID = params.node;
             var node = self.nodes.get(nodeID);
