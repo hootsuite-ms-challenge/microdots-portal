@@ -1,6 +1,6 @@
 var app = {
     dataUrl: 'http://192.168.0.10:8001/graph/',
-    dataUrl: 'data.json',
+    //dataUrl: 'data.json',
     options: {},
     nodesList: [],
     edgesList: [],
