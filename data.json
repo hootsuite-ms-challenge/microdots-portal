@@ -15,7 +15,8 @@
 
 	"edges": [{
 		"from": "ab2247d",
-		"to": "ac152dd"
+		"to": "ac152dd",
+        "label": "50%"
 	}, {
 		"from": "ac152dd",
 		"to": "fb4d59b"

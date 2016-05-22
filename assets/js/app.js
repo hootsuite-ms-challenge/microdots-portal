@@ -88,7 +88,6 @@ var app = {
                 stabilization: false,
             },
             layout: {
-                //randomSeed: 2,
             },
         };
     },
