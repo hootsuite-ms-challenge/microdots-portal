@@ -152,8 +152,8 @@ var app = {
             self.changeURL();
         });
 
-        this.network.on("hoverNode", function (params) {
-            var nodeID = params.node;
+        this.network.on("selectNode", function (params) {
+            var nodeID = params.nodes[0];
             var node = self.nodes.get(nodeID);
 
             var $div = $('<div>');
@@ -169,7 +169,8 @@ var app = {
 
             $('#info-content').html($div);
         });
-        this.network.on("blurNode", function (params) {
+
+        this.network.on("deselectNode", function (params) {
             $('#info-content').html('');
         });
     },
