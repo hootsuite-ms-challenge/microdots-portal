@@ -103,12 +103,16 @@ var app = {
                         return value/total;
                     },
                     min: 5,
-                    max: 50,
-                }
+                    max: 400,
+                },
+                font: {
+                    size: 11, // px
+                    align: 'center'
+                },
             },
             edges: {
-                color: '#768BFF',
-                width: 3,
+                color: '#E88787',
+                width: 1,
                 smooth: {
                     "type": "continuous",
                     "forceDirection": "none"
