@@ -81,7 +81,7 @@ var app = {
     config: function() {
         this.options = {
             nodes : {
-                color: {background: '#768BFF', highlight: '', hover: '', border: '#768BFF'},
+                color: {background: '#768BFF', highlight: '#303D88', hover: '#303D88', border: '#768BFF'},
                 shape: 'dot',
                 scaling: {
                     customScalingFunction: function (min, max, total, value) {
