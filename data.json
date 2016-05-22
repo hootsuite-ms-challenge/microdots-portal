@@ -2,11 +2,8 @@
 	"nodes": [{
 		"id": "ac152dd",
 		"endpoints": null,
-		"label": "pagamento"
-	}, {
-		"id": "ab2247d",
-		"endpoints": null,
-		"label": "portal"
+		"label": "pagamento",
+        "title": "titulo do nó"
 	}, {
 		"id": "fb4d59b",
 		"endpoints": null,
@@ -14,16 +11,21 @@
 	}],
 
 	"edges": [{
+		"id": "1",
 		"from": "ab2247d",
 		"to": "ac152dd",
-        "label": "50%"
+        "label": "50%",
+        "title": "title do edges"
 	}, {
+		"id": "2",
 		"from": "ac152dd",
 		"to": "fb4d59b"
 	}, {
+		"id": "3",
 		"to": "ac152dd",
 		"from": "fb4d59b"
 	}, {
+		"id": "4",
 		"from": "ab2247d",
 		"to": "fb4d59b"
 	}]
