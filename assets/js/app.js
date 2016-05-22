@@ -62,7 +62,7 @@ var app = {
     },
 
     refresh: function() {
-        this.network.setData({nodes: this.nodesList, edges: this.edgesList});
+        this.network.setData({nodes: this.nodes, edges: this.edges});
     },
 
     config: function() {
