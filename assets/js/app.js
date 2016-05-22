@@ -174,11 +174,6 @@ var app = {
             $('#info-content').html('');
         });
     },
-
-    addNode: function() {
-        this.nodes.add({label: 'Teste'});
-        this.edges.add({from: 1, to: this.nodes.getIds().pop()});
-    },
 };
 
 $(document).ready(function() {
