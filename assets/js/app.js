@@ -1,5 +1,5 @@
 var app = {
-    dataUrl: '',
+    dataUrl: 'data.json',
     options: {},
     nodesList: [],
     edgesList: [],
@@ -121,7 +121,8 @@ var app = {
                 arrows: {to: true},
             },
             interaction: {
-                hover: true
+                hover: true,
+                selectConnectedEdges: false,
             },
             physics: {
                 maxVelocity: 5,
@@ -146,6 +147,45 @@ var app = {
         this.bindEvents();
     },
 
+    selectNode: function(params) {
+        $('#info-content').html('');
+        var nodeID = params.nodes[0];
+        var node = this.nodes.get(nodeID);
+
+        var $div = $('<div>');
+        $div.append($('<p>').html('Microservice: ' + node.id));
+
+        if (node.endpoints && node.endpoints.length > 0) {
+            var $ul = $('<ul>');
+            node.endpoints.forEach(function(endpoint) {
+                $ul.append($('<li>').html(endpoint));
+            });
+            $div.append($('<p>').html('Endpoints: ' + $ul.html()));
+        }
+
+        $('#info-content').html($div);
+    },
+
+    selectEdge: function(params) {
+        $('#info-content').html('');
+        var edgeID = params.edges[0];
+        var edge = this.edges.get(edgeID);
+        var $div = $('<div>');
+        $div.append($('<p>').html('From: ' + edge.from));
+        $div.append($('<p>').html('To: ' + edge.to));
+        $div.append($('<p>').html('Usage: ' + edge.usage));
+
+        if (edge.endpoints && edge.endpoints.length > 0) {
+            var $ul = $('<ul>');
+            edge.endpoints.forEach(function(endpoint) {
+                $ul.append($('<li>').html(endpoint.endpoint + ' (access: ' + endpoint.access + ')'));
+            });
+            $div.append($('<p>').html('Endpoints: ' + $ul.html()));
+        }
+
+        $('#info-content').html($div);
+    },
+
     bindEvents: function() {
         var self = this;
 
@@ -154,21 +194,7 @@ var app = {
         });
 
         this.network.on("selectNode", function (params) {
-            var nodeID = params.nodes[0];
-            var node = self.nodes.get(nodeID);
-
-            var $div = $('<div>');
-            $div.append($('<p>').html('Microservice: ' + node.id));
-
-            if (node.endpoints && node.endpoints.length > 0) {
-                var $ul = $('<ul>');
-                node.endpoints.forEach(function(endpoint) {
-                    $ul.append($('<li>').html(endpoint));
-                });
-                $div.append($('<p>').html('Endpoints: ' + $ul.html()));
-            }
-
-            $('#info-content').html($div);
+            self.selectNode(params);
         });
 
         this.network.on("deselectNode", function (params) {
@@ -176,15 +202,9 @@ var app = {
         });
 
         this.network.on("selectEdge", function (params) {
-            var edgeID = params.edges[0];
-            var edge = self.edges.get(edgeID);
-            var $div = $('<div>');
-            $div.append($('<p>').html('From: ' + edge.from));
-            $div.append($('<p>').html('To: ' + edge.to));
-            $div.append($('<p>').html('Usage: ' + edge.usage));
-
-            $('#info-content').html($div);
+            self.selectEdge(params);
         });
+
         this.network.on("deselectEdge", function (params) {
             $('#info-content').html('');
         });
