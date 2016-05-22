@@ -123,14 +123,27 @@ var app = {
 
         // initialize your network!
         this.network = new vis.Network(this.container, this.data, this.options);
+        this.bindEvents();
+    },
 
+    bindEvents: function() {
+        var self = this;
         this.network.on("hoverNode", function (params) {
-            console.log(params);
-            var ul = $('<div>');
-            ul.append($('<p>').html('Microservice: ' + params.node));
-            ul.append($('<p>').html('Endpoints: <br /> aaa<br />bbb'));
+            var nodeID = params.node;
+            var node = self.nodes.get(nodeID);
 
-            $('#info-content').html(ul);
+            var $div = $('<div>');
+            $div.append($('<p>').html('Microservice: ' + node.id));
+
+            if (node.endpoints && node.endpoints.length > 0) {
+                var $ul = $('<ul>');
+                node.endpoints.forEach(function(endpoint) {
+                    $ul.append($('<li>').html(endpoint));
+                });
+                $div.append($('<p>').html('Endpoints: ' + $ul.html()));
+            }
+
+            $('#info-content').html($div);
         });
         this.network.on("blurNode", function (params) {
             $('#info-content').html('');
