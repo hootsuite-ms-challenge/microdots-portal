@@ -1,6 +1,5 @@
 var app = {
-    dataUrl: 'http://192.168.0.10:8001/graph/',
-    dataUrl: 'data.json',
+    dataUrl: '',
     options: {},
     nodesList: [],
     edgesList: [],
@@ -20,12 +19,14 @@ var app = {
 
     configURL: function() {
         var url = '';
-        url += window.location.protocol + '//';
-        url += window.location.hostname;
-        url += ':8001/graph/';
+        if (this.dataUrl == '') {
+            url += window.location.protocol + '//';
+            url += window.location.hostname;
+            url += ':8001/graph/';
+            this.dataUrl = url;
+        }
 
-        this.dataUrl = url;
-        $('#url-config').find('input').attr('placeholder', url);
+        $('#url-config').find('input').attr('placeholder', this.dataUrl);
     },
 
     changeURL: function() {
@@ -171,6 +172,20 @@ var app = {
         });
 
         this.network.on("deselectNode", function (params) {
+            $('#info-content').html('');
+        });
+
+        this.network.on("selectEdge", function (params) {
+            var edgeID = params.edges[0];
+            var edge = self.edges.get(edgeID);
+            var $div = $('<div>');
+            $div.append($('<p>').html('From: ' + edge.from));
+            $div.append($('<p>').html('To: ' + edge.to));
+            $div.append($('<p>').html('Usage: ' + edge.usage));
+
+            $('#info-content').html($div);
+        });
+        this.network.on("deselectEdge", function (params) {
             $('#info-content').html('');
         });
     },
