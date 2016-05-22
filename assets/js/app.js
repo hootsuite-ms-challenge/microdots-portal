@@ -70,7 +70,13 @@ var app = {
             nodes : {
                 color: {background: '#768BFF', highlight: '', hover: '', border: '#768BFF'},
                 shape: 'dot',
-                size: 20,
+                scaling: {
+                    customScalingFunction: function (min, max, total, value) {
+                        return value/total;
+                    },
+                    min: 5,
+                    max: 150,
+                }
             },
             edges: {
                 color: '#768BFF',
