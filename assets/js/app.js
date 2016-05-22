@@ -1,9 +1,9 @@
 var app = {
-    dataUrl: 'http://192.168.0.10:8000/graph/',
+    dataUrl: 'http://192.168.0.10:8001/graph/',
     options: {},
     nodesList: [],
     edgesList: [],
-    interval: 2, // in seconds
+    interval: 4, // in seconds
     repeater: null,
 
     nodes: new vis.DataSet(this.nodesList),
@@ -26,6 +26,7 @@ var app = {
 
     loadJson: function() {
         var self = this;
+        //self.dataUrl = 'data.json';
         $.getJSON(self.dataUrl, function(data) {
             self.nodesList = data.nodes;
             self.edgesList = data.edges;
@@ -36,22 +37,34 @@ var app = {
 
     updateData: function() {
         var self = this;
+        var itens, ids;
 
-        var itens = this.nodes.update(this.nodesList);
-        var ids = app.nodes.getIds();
+        itens = [];
+        this.nodesList.forEach(function(node) {
+            self.nodes.update(node);
+            itens.push(node.id);
+        });
+
+        ids = self.nodes.getIds();
         ids.forEach(function(id) {
             if (itens.indexOf(id) < 0) {
                 self.nodes.remove(id);
             }
         });
 
-        itens = this.edges.update(this.edgesList);
-        ids = app.edges.getIds();
+        itens = [];
+        this.edgesList.forEach(function(edge) {
+            self.edges.update(edge);
+            itens.push(edge.id);
+        });
+
+        ids = self.edges.getIds();
         ids.forEach(function(id) {
             if (itens.indexOf(id) < 0) {
                 self.edges.remove(id);
             }
         });
+
     },
 
     updateNetwork: function() {
@@ -75,7 +88,7 @@ var app = {
                         return value/total;
                     },
                     min: 5,
-                    max: 150,
+                    max: 50,
                 }
             },
             edges: {
@@ -91,7 +104,7 @@ var app = {
                 hover: true
             },
             physics: {
-                maxVelocity: 1,
+                maxVelocity: 5,
                 enabled: true,
                 stabilization: false,
             },

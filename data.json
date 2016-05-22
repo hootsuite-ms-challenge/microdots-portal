@@ -5,6 +5,10 @@
 		"label": "pagamento",
         "title": "titulo do nó"
 	}, {
+		"id": "ab2247d",
+		"endpoints": null,
+		"label": "portal"
+	}, {
 		"id": "fb4d59b",
 		"endpoints": null,
 		"label": "autenticacao"
